@@ -13,13 +13,15 @@ def get_aggs():
 
     try:
         # Attempt to fetch data
-        aggs = list(client.get_aggs_iter(
-            ticker="AAPL",
-            multiplier=1,
-            timespan="day",
-            from_="2025-01-01",
-            to="2025-01-22"
+        aggs = list(client.get_aggs(
+            "AAPL",
+            1,
+            "day",
+            "2025-01-01",
+            "2025-01-22"
         ))
+
+        print(response.results)
 
         if not aggs:
             return jsonify({"error": "No data available"}), 404
@@ -27,7 +29,7 @@ def get_aggs():
         return jsonify(aggs)
 
     except Exception as e:
-        print("🔥 FULL ERROR TRACEBACK:", str(e))  # Log full error details
+        print("FULL ERROR TRACEBACK:", str(e))  # Log full error details
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
