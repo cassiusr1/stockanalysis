@@ -21,7 +21,7 @@ def get_aggs():
             "2025-01-22"
         ))
 
-        print(response.results)
+
 
         if not aggs:
             return jsonify({"error": "No data available"}), 404
